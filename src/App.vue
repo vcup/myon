@@ -15,10 +15,6 @@ export default defineComponent({
 </script>
 
 <style>
-body {
-  margin: 0;
-}
-
 .panel {
     border: 2px solid;
     border-radius: 16px;
