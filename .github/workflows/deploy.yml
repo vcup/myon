@@ -1,5 +1,4 @@
-# deploy.yml
-name: deploy to vcup.moe
+name: Deploy to vcup.moe
 on: [push]
 jobs:
   Deploy-Actions:
