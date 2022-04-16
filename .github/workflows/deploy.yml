@@ -5,8 +5,8 @@ jobs:
   Deploy-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      - uses: actions/setup-node
+      - uses: actions/checkout@latest
+      - uses: actions/setup-node@latest
       - run: npm install
       - run: npm run build
       - name: Deploy to Server
