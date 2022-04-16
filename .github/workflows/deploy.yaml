@@ -1,3 +1,4 @@
+
 name: Deploy to vcup.moe
 on: [push]
 jobs:
