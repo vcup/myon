@@ -1,10 +1,11 @@
 /// code from https://github.com/fearnycompknowhow/vue-typescript-debugger/blob/master/vue.config.js
 /// article on https://ckhconsulting.com/vue-typescript-debuggers/
 
+const { defineConfig } = require('@vue/cli-service')
 const fs = require('fs');
 const { SourceMapConsumer, SourceMapGenerator } = require('source-map');
 
-module.exports = {
+var config = defineConfig({
   configureWebpack() {
     return {
       devtool: 'source-map',
@@ -29,7 +30,7 @@ module.exports = {
       }]
     };
   }
-};
+});
 
 function shouldSkipModule(module) {
   const { resource = '' } = module;
@@ -112,3 +113,5 @@ function getIndexOfScriptTag(sourceFile) {
 
   return indexOfScriptTag;
 }
+
+module.exports = process.env.NODE_ENV !== 'production' ? config : { productionSourceMap: false };
