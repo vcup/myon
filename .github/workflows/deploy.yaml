@@ -16,3 +16,4 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: vcup.moe
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ~/
