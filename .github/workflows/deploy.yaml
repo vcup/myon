@@ -1,0 +1,19 @@
+name: Deploy to vcup.moe
+on: [push]
+jobs:
+  Deploy-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm install
+      - run: npm run build
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: vcup.moe
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ~/myon
