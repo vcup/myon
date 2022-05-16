@@ -9,13 +9,13 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: mv dist/ myon/
-      - run: tar -czvf myon.tar.gz myon/
+      - run: zip -r myon.zip myon/
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-rltgoDzvO --delete"
-          SOURCE: "myon.tar.gz"
+          SOURCE: "myon.zip"
           REMOTE_HOST: vcup.moe
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ~/
