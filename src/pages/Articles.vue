@@ -17,7 +17,7 @@ import Article from "../components/Article.vue";
 import { inject, ref } from 'vue';
 import axios from 'axios';
 
-const apiURL = inject("apiURL") as string // privider in main.ts
+const apiURL = inject("apiURL") as string // provider in main.ts
 
 interface result {
   Title: string,

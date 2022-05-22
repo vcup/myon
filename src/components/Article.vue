@@ -14,8 +14,10 @@ const props = defineProps<{
   Content: string
 }>()
 
-var Title = props.Title.split("\n", 2)[0];
-var SubTitle = props.Title.split("\n", 2)[1];
+var titles = props.Title.split("\n", 2);
+
+var Title = titles[0];
+var SubTitle = titles[1];
 var Content = marked(props.Content);
 </script>
 

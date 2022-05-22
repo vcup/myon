@@ -2,10 +2,10 @@
   <div class="panel" id="root">
     <div id="myon-sign">
       <strong id="myon">Myon~</strong>
-      <span id="sign">{{ props.SignText }}</span>
+      <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div v-for="infos in props.ContentInfos" :key="infos.Title">
+      <div v-for="infos in ContentInfos" :key="infos.Title">
         <div class="panel">{{infos.Title}}</div>
         <ul>
           <li v-for="index in infos.Indexs" :key="index">
@@ -20,22 +20,13 @@
 
 
 <script setup lang="ts">
-type ContentInfos = {
+type ContentInfo = {
   Title: string,
   Indexs: string[]
-}[]
+};
 
-const props = defineProps({
-  SignText: {
-    type: String,
-    default: "きょうもいいてんき"
-  },
-  ContentInfos: {
-    type: Array as () => ContentInfos,
-    default: () => [],
-  },
-})
-
+var SignText = "きょうもいいてんき";
+var ContentInfos = new Array<ContentInfo>();
 </script>
 
 
