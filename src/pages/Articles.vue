@@ -1,6 +1,6 @@
 <template>
 <div id="warpper">
-  <ArticleMenu />
+  <ArticleMenu :ContentInfos="results" />
 
   <div />
 
@@ -21,8 +21,16 @@ const apiURL = inject("apiURL") as string // provider in main.ts
 
 interface result {
   Title: string,
-  Content: string
+  Content: string,
+  HtmlHeadingIdRelation: Map<string, string>
 }
+/* example result
+  result:{
+    Title: 'example',
+    Content: <h1 id="1-1-example">example</h1> <p>w</p> <h2 id="1-1-1-heading"></h2> <h2 id="1-1-2-heading">heading</h2>
+    HtmlHeadingIdRelation: {"1-1-example": "example", "1-1-1-heading": "heading", "1-1-2-heading": "heading"}
+  }
+*/
 
 const results = ref(new Array<result>());
 
@@ -33,7 +41,6 @@ axios.get(`${apiURL}/Articles`)
       results.value.push(element);
     });
   })
-
 </script>
 
 

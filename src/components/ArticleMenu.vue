@@ -5,10 +5,10 @@
       <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div v-for="infos in ContentInfos" :key="infos.Title">
+      <div class="content" v-for="infos in props.ContentInfos" :key="infos.Title">
         <div class="panel">{{infos.Title}}</div>
         <ul>
-          <li v-for="index in infos.Indexs" :key="index">
+          <li v-for="index in infos.HtmlHeadingIdRelation" :key="index[0]">
             {{index}}
           </li>
         </ul>
@@ -20,13 +20,21 @@
 
 
 <script setup lang="ts">
-type ContentInfo = {
+type ContentInfos = {
   Title: string,
-  Indexs: string[]
-};
+  HtmlHeadingIdRelation: Map<string, string>
+}[]
 
-var SignText = "きょうもいいてんき";
-var ContentInfos = new Array<ContentInfo>();
+const props = defineProps({
+  SignText: {
+    type: String,
+    default: "きょうもいいてんき"
+  },
+  ContentInfos: {
+    type: Array as () => ContentInfos,
+    default: () => [],
+  },
+})
 </script>
 
 
