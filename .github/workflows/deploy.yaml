@@ -17,5 +17,6 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "myon.zip"
           REMOTE_HOST: vcup.moe
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ~/
