@@ -6,11 +6,13 @@
     </div>
     <div id="contents">
       <div class="content" v-for="infos in props.ContentInfos" :key="infos.Title">
-        <div class="panel" @click="scrollTo(infos.Title)" v-html="infos.Title"/>
-        <ul>
-          <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
-              @click="scrollTo(key)" v-html="value" />
-        </ul>
+        <div class="panel" @click="{scrollTo(infos.Title);focuedTitle = infos.Title}" v-html="infos.Title"/>
+        <Transition>
+          <ul v-if="focuedTitle === infos.Title">
+            <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
+                @click="scrollTo(key)" v-html="value" />
+          </ul>
+        </Transition>
       </div>
     </div>
     <div id="other"></div>
@@ -19,6 +21,7 @@
 
 
 <script setup lang="ts">
+import { ref } from 'vue';
 type ContentInfos = {
   Title: string,
   HtmlHeadingIdRelation: Map<string, string>
@@ -32,8 +35,10 @@ const props = defineProps({
   ContentInfos: {
     type: Array as () => ContentInfos,
     default: () => [],
-  },
+  }
 })
+
+var focuedTitle = ref("");
 
 function scrollTo(id: string){
   var element = document.getElementById(id);
@@ -85,9 +90,27 @@ div#contents::-webkit-scrollbar {
 div.content {
   position: sticky;
   top: 10px;
+  margin-bottom: 16px;
 }
 
 div.panel {
   min-height: 8vh;
+}
+
+ul {
+  margin-bottom: 0px;
+}
+
+.v-enter-active {
+  transition: opacity 0.4s ease;
+}
+
+.v-leave-active {
+  transition: opacity 0s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0.25;
 }
 </style>
