@@ -5,10 +5,10 @@
       <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div class="content" v-for="infos in props.ContentInfos" :key="infos.Title">
-        <div class="panel" @click="{scrollTo(infos.Title);focuedTitle = infos.Title}" v-html="infos.Title"/>
+      <div v-for="infos in props.ContentInfos" :key="infos.Title" :class="focusedTitle === infos.Title ? 'content focused' : 'content'">
+        <div class="panel" @click="{scrollTo(infos.Title);focusedTitle = infos.Title}" v-html="infos.Title"/>
         <Transition>
-          <ul v-if="focuedTitle === infos.Title">
+          <ul v-if="focusedTitle === infos.Title">
             <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
                 @click="scrollTo(key)" v-html="value" />
           </ul>
@@ -38,7 +38,7 @@ const props = defineProps({
   }
 })
 
-var focuedTitle = ref("");
+var focusedTitle = ref("");
 
 function scrollTo(id: string){
   var element = document.getElementById(id);
@@ -61,44 +61,43 @@ div#root {
 }
 
 div#myon-sign {
-    display: grid;
-    grid-template-rows: 64.28% 14.28%;
-    gap: 24px;
+  display: grid;
+  grid-template-rows: 64.28% 14.28%;
+  gap: 24px;
 }
 
 #myon {
-    text-align: center;
-    font-size: 54px;
+  text-align: center;
+  font-size: 54px;
 }
 
 #sign {
-
-    text-align: center;
-    font-size: 12px;
-    font-family: sans-serif;
-    font-weight: lighter;
-    color: #707070;
+  text-align: center;
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  color: #707070;
 }
 
 div#contents {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 div#contents::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+
+div.content.focused {
+  position: sticky;
+  top: 10px;
+  background-color: white;
 }
 
 div.content {
-  position: sticky;
-  top: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 div.panel {
   min-height: 8vh;
-}
-
-ul {
-  margin-bottom: 0px;
 }
 
 .v-enter-active {
