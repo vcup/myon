@@ -1,5 +1,5 @@
 <template>
-<div class="panel">
+<div class="panel" :id="Title">
   <h1 id="title" v-html="Title" />
   <h2 id="subtitle" v-html="SubTitle" />
   <div class="Content" v-html="props.Content" />

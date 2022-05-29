@@ -2,8 +2,6 @@
 <div id="warpper">
   <ArticleMenu :ContentInfos="results" />
 
-  <div />
-
   <main>
     <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" />
   </main>

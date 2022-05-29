@@ -6,11 +6,10 @@
     </div>
     <div id="contents">
       <div class="content" v-for="infos in props.ContentInfos" :key="infos.Title">
-        <div class="panel">{{infos.Title}}</div>
+        <div class="panel" @click="scrollTo(infos.Title)" v-html="infos.Title"/>
         <ul>
-          <li v-for="index in infos.HtmlHeadingIdRelation" :key="index[0]">
-            {{index}}
-          </li>
+          <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
+              @click="scrollTo(key)" v-html="value" />
         </ul>
       </div>
     </div>
@@ -35,14 +34,21 @@ const props = defineProps({
     default: () => [],
   },
 })
+
+function scrollTo(id: string){
+  var element = document.getElementById(id);
+  element?.scrollIntoView();
+}
+
 </script>
 
 
 <style scoped>
 div#root {
+  position: sticky;
+  top: 2.38vh;
   width: 14.80vw;
   height: 90.47vh;
-  position: fixed;
   padding: 32px 16px 16px;
   display: grid;
   grid-template-rows: 12.28% 67.54% 16.67%;
@@ -74,5 +80,14 @@ div#contents {
 }
 div#contents::-webkit-scrollbar {
     display: none;
+}
+
+div.content {
+  position: sticky;
+  top: 10px;
+}
+
+div.panel {
+  min-height: 8vh;
 }
 </style>
