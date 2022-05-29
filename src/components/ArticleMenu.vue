@@ -6,7 +6,8 @@
     </div>
     <div id="contents">
       <div v-for="infos in props.ContentInfos" :key="infos.Title" :class="focusedTitle === infos.Title ? 'content focused' : 'content'">
-        <div class="panel" @click="{scrollTo(infos.Title);focusedTitle = infos.Title}" v-html="infos.Title"/>
+        <div class="panel" v-html="infos.Title"
+        @click="{if (focusedTitle !== infos.Title) {scrollTo(infos.Title);focusedTitle = infos.Title} else focusedTitle = ''}" />
         <Transition>
           <ul v-if="focusedTitle === infos.Title">
             <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
