@@ -101,6 +101,10 @@ div.panel {
   min-height: 8vh;
 }
 
+ul > li :deep(*) {
+  margin: 0px;
+}
+
 .v-enter-active {
   transition: opacity 0.4s ease;
 }
