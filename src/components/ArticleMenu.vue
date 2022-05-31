@@ -94,7 +94,7 @@ div.content.focused {
 }
 
 div.content {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 div.panel {

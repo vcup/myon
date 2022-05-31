@@ -7,9 +7,14 @@
 
 <style>
 .panel {
-    border: 2px solid;
-    border-radius: 16px;
-    border-color: #707070;
+  margin: 2px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-shadow: 0px 0px 3px black;
+}
+
+.pane {
+  border-radius: 16px;
 }
 </style>
 
@@ -21,7 +26,7 @@ nav {
   color: #2c3e50;
   padding: 16px;
   height: 42px; /* 43 + 16 * 2 = 75 */
-  border-bottom: 1px solid;
+  box-shadow: 0px 2px 42px #6e6e6e;
 }
 
 nav a {
