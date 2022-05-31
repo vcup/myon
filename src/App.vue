@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/">Articles</router-link>
+    <router-link to="/Articles">Articles</router-link>
   </nav>
   <router-view/>
 </template>
@@ -17,19 +17,25 @@
 
 nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding: 30px;
+  padding: 16px;
+  height: 42px; /* 43 + 16 * 2 = 75 */
+  border-bottom: 1px solid;
 }
 
 nav a {
   font-weight: bold;
+  text-decoration: none;
   color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+nav a {
+  font-size: larger;
+  line-height: 42px;
 }
 </style>
