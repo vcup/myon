@@ -5,7 +5,7 @@
       <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div v-for="infos in props.ContentInfos" :key="infos.Title" :class="focusedTitle === infos.Title ? 'content focused' : 'content'">
+      <div v-for="infos in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
         <div class="panel" v-html="infos.Title"
         @click="{if (focusedTitle !== infos.Title) {scrollTo(infos.Title);focusedTitle = infos.Title} else focusedTitle = ''}" />
         <Transition>

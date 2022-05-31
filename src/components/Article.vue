@@ -1,5 +1,5 @@
 <template>
-<div class="panel" :id="Title">
+<div class="panel" :id="Id">
   <h1 id="title" v-html="Title" />
   <h2 id="subtitle" v-html="SubTitle" />
   <div class="Content" v-html="props.Content" />
@@ -10,7 +10,8 @@
 
 const props = defineProps<{
   Title: string,
-  Content: string
+  Content: string,
+  Id: string
 }>()
 
 var titles = props.Title.split("\n", 2);

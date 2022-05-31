@@ -3,7 +3,7 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" />
+    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="getTitleId(content)" />
   </main>
 </div>
 </template>
@@ -39,6 +39,13 @@ axios.get(`${apiURL}/Articles`)
       results.value.push(element);
     });
   })
+
+function getTitleId(content: result) : string {
+  for (const [key, _] of Object.entries(content.HtmlHeadingIdRelation)){
+    return key;
+  }
+  return '';
+}
 </script>
 
 
