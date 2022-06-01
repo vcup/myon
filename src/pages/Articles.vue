@@ -3,7 +3,7 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="getTitleId(content)" />
+    <Article v-for="(content, n) in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="n.toString()" />
   </main>
 </div>
 </template>
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import ArticleMenu from "../components/ArticleMenu.vue";
 import Article from "../components/Article.vue";
-import { inject, ref } from 'vue';
+import { inject, ref, watch } from 'vue';
 import axios from 'axios';
 
 const apiURL = inject("apiURL") as string // provider in main.ts
@@ -24,11 +24,15 @@ interface result {
 }
 /* example result
   result:{
+    Id: '0-example';
     Title: 'example',
     Content: <h1 id="1-1-example">example</h1> <p>w</p> <h2 id="1-1-1-heading"></h2> <h2 id="1-1-2-heading">heading</h2>
     HtmlHeadingIdRelation: {"1-1-example": "example", "1-1-1-heading": "heading", "1-1-2-heading": "heading"}
   }
 */
+const props = defineProps<{
+  ContentId?: string
+}>();
 
 const results = ref(new Array<result>());
 
@@ -40,11 +44,13 @@ axios.get(`${apiURL}/Articles`)
     });
   })
 
-function getTitleId(content: result) : string {
-  for (const [key, _] of Object.entries(content.HtmlHeadingIdRelation)){
-    return key;
+watch(() => props.ContentId, scrollTo);
+
+function scrollTo(id?: string) {
+  if (id) {
+    var element = document.getElementById(id as string);
+    element?.scrollIntoView();
   }
-  return '';
 }
 </script>
 

@@ -25,7 +25,7 @@ nav {
   text-align: center;
   color: #2c3e50;
   padding: 16px;
-  height: 42px; /* 43 + 16 * 2 = 75 */
+  min-height: 42px; /* 43 + 16 * 2 = 75 */
   box-shadow: 0px 2px 42px #6e6e6e;
 }
 
@@ -33,14 +33,11 @@ nav a {
   font-weight: bold;
   text-decoration: none;
   color: #2c3e50;
+  font-size: larger;
+  line-height: 42px;
 }
 
 nav a.router-link-exact-active {
   color: #42b983;
-}
-
-nav a {
-  font-size: larger;
-  line-height: 42px;
 }
 </style>

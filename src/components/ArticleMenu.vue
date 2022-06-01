@@ -5,14 +5,14 @@
       <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div v-for="infos in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <div class="panel" v-html="infos.Title"
-        @click="{if (focusedTitle !== infos.Title) {scrollTo(infos.Title);focusedTitle = infos.Title} else focusedTitle = ''}" />
+      <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
+        <router-link class="panel" :to="'/Articles/' + n.toString()" v-html="infos.Title"
+          @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
-          <ul v-if="focusedTitle === infos.Title">
-            <li v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
-                @click="scrollTo(key)" v-html="value" />
-          </ul>
+          <div v-if="focusedTitle === infos.Title">
+            <router-link v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
+                :to="'/Articles/' + key" v-html="value" />
+          </div>
         </Transition>
       </div>
     </div>
@@ -40,12 +40,6 @@ const props = defineProps({
 })
 
 var focusedTitle = ref("");
-
-function scrollTo(id: string){
-  var element = document.getElementById(id);
-  element?.scrollIntoView();
-}
-
 </script>
 
 
@@ -53,7 +47,6 @@ function scrollTo(id: string){
 div#root {
   position: sticky;
   top: 2.38vh;
-  width: 14.80vw;
   height: 90.47vh;
   padding: 32px 16px 16px;
   display: grid;
@@ -97,12 +90,18 @@ div.content {
   margin-bottom: 16px;
 }
 
-div.panel {
+.panel {
+  display: block;
   min-height: 8vh;
 }
 
-ul > li :deep(*) {
+a > :deep(*) {
   margin: 0px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
 
 .v-enter-active {
