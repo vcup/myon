@@ -6,12 +6,11 @@
     </div>
     <div id="contents">
       <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <router-link class="panel" :to="'/Articles/' + n.toString()" v-html="infos.Title"
+        <router-link class="panel" :to="n.toString()" v-html="infos.Title"
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
-            <router-link v-for="value, key in infos.HtmlHeadingIdRelation" :key="key"
-                :to="'/Articles/' + key" v-html="value" />
+            <router-link v-for="value, key in infos.HtmlHeadingIdRelation" :key="key" :to="'/Articles/' + key" v-html="value" />
           </div>
         </Transition>
       </div>
@@ -39,7 +38,7 @@ const props = defineProps({
   }
 })
 
-var focusedTitle = ref("");
+const focusedTitle = ref("");
 </script>
 
 
@@ -102,6 +101,14 @@ a > :deep(*) {
 a {
   color: black;
   text-decoration: none;
+}
+
+div.content > a {
+  font-weight: 600;
+}
+
+div.content > div {
+  padding-left: 16px;
 }
 
 .v-enter-active {
