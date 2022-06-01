@@ -6,11 +6,11 @@
     </div>
     <div id="contents">
       <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <router-link class="panel" :to="n.toString()" v-html="infos.Title"
+        <router-link class="panel" :to="'/Articles/' + n.toString()" v-html="infos.Title"
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
-            <router-link v-for="value, key in infos.HtmlHeadingIdRelation" :key="key" :to="'/Articles/' + key" v-html="value" />
+          <ArticleIndexs :IndexNode="buildIndexsList(infos.HtmlHeadingIdRelation)"/>
           </div>
         </Transition>
       </div>
@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import ArticleIndexs from "./ArticleIndexs.vue";
 type ContentInfos = {
   Title: string,
   HtmlHeadingIdRelation: Map<string, string>
@@ -39,6 +40,55 @@ const props = defineProps({
 })
 
 const focusedTitle = ref("");
+
+interface IndexNode {
+  key: string,
+  value: string,
+  childrens: IndexNode[]
+}
+
+function buildIndexsList(relation: Map<string, string>): IndexNode{
+  var rootNode = {key: '', value: '', childrens: []} as IndexNode;
+  for (const [key, value] of Object.entries(relation)) {
+    const keys = [] as string[];
+    for (const k of key.split('-')) {
+      if (keys.length > 0){
+        keys.push(keys.at(-1)+'-'+k)
+      }
+      else {
+        keys.push(k)
+      }
+    }
+
+    makeNode(rootNode, keys.slice(1), value);
+  }
+
+  return rootNode;
+}
+
+function makeNode(node: IndexNode, keys: string[], value: string): IndexNode{
+  if (keys.length === 1) {
+    node.key = keys[0];
+    node.value = value;
+    return node;
+  }
+
+  if (node.childrens.length < 1) {
+    const newNode = {key: keys[1], value: '', childrens: [] } as IndexNode;
+    node.childrens.push(newNode);
+    return makeNode(newNode, keys.slice(1), value);
+  }
+  else {
+    for (var childrenNode of node.childrens) {
+      if (childrenNode.key === keys[1]) {
+        return makeNode(childrenNode, keys.slice(1), value);
+      }
+    }
+    const newNode = { key: keys[1], value: '', childrens: [] } as IndexNode;
+    node.childrens.push(newNode);
+    return makeNode(newNode, keys.slice(1), value);
+  }
+}
 </script>
 
 
