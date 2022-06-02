@@ -59,6 +59,8 @@ nav {
   padding: 16px;
   min-height: 42px; /* 43 + 16 * 2 = 75 */
   box-shadow: 0px 2px 42px #6e6e6e;
+  background: white;
+  opacity: 0.85;
 }
 
 nav a {
@@ -67,6 +69,7 @@ nav a {
   color: #2c3e50;
   font-size: larger;
   line-height: 42px;
+  opacity: 1;
 }
 
 nav a.router-link-exact-active {
