@@ -48,8 +48,17 @@ watch(() => props.ContentId, scrollTo);
 
 function scrollTo(id?: string) {
   if (id) {
-    var element = document.getElementById(id as string);
-    element?.scrollIntoView();
+    const element = document.getElementById(id as string);
+
+    if (element === null) return;
+
+    const offset = element.offsetTop - window.scrollY - 5;
+    if (window.scrollY > element.offsetTop) {
+      window.scrollBy({top: offset - 75, behavior: 'smooth'});
+    }
+    else {
+      window.scrollBy({top: offset, behavior: 'smooth'});
+    }
   }
 }
 </script>
