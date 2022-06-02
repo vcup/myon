@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" id="root">
+  <div class="panel" id="menu-root">
     <div id="myon-sign">
       <strong id="myon">Myon~</strong>
       <span id="sign">{{ SignText }}</span>
@@ -93,19 +93,19 @@ function makeNode(node: IndexNode, keys: string[], value: string): IndexNode{
 
 
 <style scoped>
-div#root {
+div#menu-root {
   position: sticky;
-  top: 2.38vh;
-  height: 90.47vh;
-  padding: 32px 16px 16px;
+  top: 73px;
+  height: 832px; /* 880px */
+  padding: 32px 24px 16px;
   display: grid;
-  grid-template-rows: 12.28% 67.54% 16.67%;
-  gap: 16px;
+  grid-template-rows: 112px 564px 136px; /* 112px 560px 136px */
+  gap: 8px;
 }
 
 div#myon-sign {
   display: grid;
-  grid-template-rows: 64.28% 14.28%;
+  grid-template-rows: 72px 16px;
   gap: 24px;
 }
 
@@ -131,7 +131,7 @@ div#contents::-webkit-scrollbar {
 
 div.content.focused {
   position: sticky;
-  top: 10px;
+  top: 2px;
   background-color: white;
 }
 
@@ -141,7 +141,7 @@ div.content {
 
 .panel {
   display: block;
-  min-height: 8vh;
+  min-height: 76px;
 }
 
 a > :deep(*) {

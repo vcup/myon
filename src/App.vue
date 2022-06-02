@@ -45,7 +45,7 @@ watch(offset, (value, oldvalue) => pinningHeader.value = value < oldvalue);
 
 @keyframes pinning {
   from {
-    top: -75px;
+    top: -72px;
   }
   to {
     top: 0px;
@@ -57,7 +57,7 @@ nav {
   text-align: center;
   color: #2c3e50;
   padding: 16px;
-  min-height: 42px; /* 43 + 16 * 2 = 75 */
+  min-height: 40px; /* 40 + 16 * 2 = 72 */
   box-shadow: 0px 2px 42px #6e6e6e;
   background: white;
   opacity: 0.85;
@@ -68,7 +68,7 @@ nav a {
   text-decoration: none;
   color: #2c3e50;
   font-size: larger;
-  line-height: 42px;
+  line-height: 40px;
   opacity: 1;
 }
 

@@ -67,9 +67,9 @@ function scrollTo(id?: string) {
 <style scoped>
 div#warpper {
   display: grid;
-  grid-template-columns: 22.8% auto;
+  grid-template-columns: 312px auto;
   grid-template-rows: 100%;
   gap: 16px;
-  margin: 24px 14.2% 24px 12.5%;
+  margin: 32px 264px 24px 232px;
 }
 </style>
