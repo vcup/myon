@@ -3,10 +3,10 @@ import Articles from '../pages/Articles.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/Articles/:ContentId?',
+    path: '/Articles',
     name: 'Articles',
     component: Articles,
-    props: true
+    props: route => ({ ContentId: route.query.id })
   }
 ]
 

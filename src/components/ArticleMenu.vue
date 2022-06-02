@@ -6,7 +6,7 @@
     </div>
     <div id="contents">
       <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <router-link class="panel" :to="'/Articles/' + n.toString()" v-html="infos.Title"
+        <router-link class="panel" :to="'/Articles?id=' + n.toString()" v-html="infos.Title"
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
