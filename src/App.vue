@@ -1,9 +1,25 @@
 <template>
-  <nav>
+  <nav :class="pinningHeader ? 'pinning': ''">
     <router-link to="/Articles">Articles</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
+
+
+<script setup lang="ts">
+import { onMounted, ref, watch } from 'vue';
+
+const offset = ref(0);
+const pinningHeader = ref(false);
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    offset.value = document.documentElement.scrollTop
+  })
+})
+
+watch(offset, (value, oldvalue) => pinningHeader.value = value < oldvalue);
+</script>
+
 
 <style>
 .panel {
@@ -19,6 +35,22 @@
 </style>
 
 <style scoped>
+
+.pinning {
+  position: sticky;
+  animation-name: pinning;
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pinning {
+  from {
+    top: -75px;
+  }
+  to {
+    top: 0px;
+  }
+}
 
 nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
