@@ -1,5 +1,5 @@
 <template>
-  <nav :class="pinningHeader ? 'pinning': ''">
+  <nav :class="pinningHeader ? 'pinning': 'unpined'">
     <router-link to="/Articles">Articles</router-link>
   </nav>
   <router-view />
@@ -36,22 +36,36 @@ watch(offset, (value, oldvalue) => pinningHeader.value = value < oldvalue);
 <style scoped>
 
 .pinning {
-  position: sticky;
   animation-name: pinning;
-  animation-duration: 250ms;
+  animation-duration: 125ms;
   animation-fill-mode: forwards;
+}
+
+.unpined {
+  animation-name: unpined;
+  animation-duration: 125ms;
 }
 
 @keyframes pinning {
   from {
-    top: -72px;
+    top: -144px;
   }
   to {
     top: 0px;
   }
 }
 
+@keyframes unpined {
+  to {
+    top: -144px;
+  }
+  from {
+    top: 0px;
+  }
+}
+
 nav {
+  position: sticky;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
