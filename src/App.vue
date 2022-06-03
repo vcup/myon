@@ -24,9 +24,8 @@ watch(offset, (value, oldvalue) => pinningHeader.value = value < oldvalue);
 <style>
 .panel {
   margin: 2px;
-  border: 2px solid transparent;
+  border: 2px solid #acacac;
   border-radius: 16px;
-  box-shadow: 0px 0px 3px black;
 }
 
 .pane {

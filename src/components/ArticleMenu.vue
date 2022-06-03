@@ -139,6 +139,7 @@ div#myon-sign {
 
 div#contents {
   overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 div#contents::-webkit-scrollbar {
   display: none;
@@ -151,7 +152,8 @@ div.content.focused {
 }
 
 div.content {
-  margin-bottom: 16px;
+  scroll-snap-align: start;
+  margin-top: 16px;
 }
 
 .panel {
