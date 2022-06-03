@@ -45,7 +45,6 @@ var focusedElement: HTMLElement|null;
 function checkHeight() {
   focusedElement?.removeAttribute('style');
 
-  console.info(focusedElement?.scrollHeight);
   focusedElement = document.querySelector<HTMLElement>('div.content.focused');
   if (focusedElement) {
     var height = Math.floor(focusedElement.scrollHeight / 96);

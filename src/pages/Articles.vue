@@ -45,6 +45,7 @@ axios.get(`${apiURL}/Articles`)
   })
 
 watch(() => props.ContentId, scrollTo);
+watch(() => results.value.length, () => scrollTo(props.ContentId), { flush: 'post' });
 
 function scrollTo(id?: string) {
   if (id) {
