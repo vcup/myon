@@ -48,8 +48,8 @@ function checkHeight() {
   console.info(focusedElement?.scrollHeight);
   focusedElement = document.querySelector<HTMLElement>('div.content.focused');
   if (focusedElement) {
-    var height = Math.floor(focusedElement.scrollHeight / 80);
-    height = (height > 3 ? 3: height) * 80 + 80;
+    var height = Math.floor(focusedElement.scrollHeight / 96);
+    height = (height > 3 ? 3: height) * 96 + 80;
     focusedElement.style.height = height.toString() + "px";
   }
 }
