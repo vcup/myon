@@ -146,7 +146,7 @@ div#contents::-webkit-scrollbar {
 
 div.content.focused {
   position: sticky;
-  top: 2px;
+  top: 0px;
   background-color: white;
 }
 
@@ -155,22 +155,17 @@ div.content {
   margin-top: 16px;
 }
 
-.panel {
+a.panel {
   display: block;
-  min-height: 76px;
-}
-
-a > :deep(*) {
-  margin: 0px;
-}
-
-a {
-  color: black;
-  text-decoration: none;
+  min-height: 60px;
+  padding: 8px 16px;
 }
 
 div.content > a {
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  text-decoration: none;
 }
 
 div.content > div {

@@ -31,7 +31,7 @@ const emit = defineEmits<{
   (e: 'changed', status: boolean): void
 }>();
 
-const expanded = ref(props.IndexNode.childrens.length < 6);
+const expanded = ref(props.IndexNode.childrens.length < 4);
 watch(expanded, () => emit('changed', expanded.value), { flush: 'post' });
 </script>
 
