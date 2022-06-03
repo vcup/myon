@@ -10,7 +10,7 @@
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
-          <ArticleIndexs :IndexNode="buildIndexsList(infos.HtmlHeadingIdRelation)"/>
+          <ArticleIndexs :IndexNode="buildIndexsList(infos.HtmlHeadingIdRelation)" @changed="checkHeight()"/>
           </div>
         </Transition>
       </div>
@@ -40,17 +40,21 @@ const props = defineProps({
 })
 
 const focusedTitle = ref("");
-var focusedElement: HTMLElement|null;
-watch(focusedTitle, () => {
-  if (focusedElement) focusedElement.removeAttribute('style');
 
+var focusedElement: HTMLElement|null;
+function checkHeight() {
+  focusedElement?.removeAttribute('style');
+
+  console.info(focusedElement?.scrollHeight);
   focusedElement = document.querySelector<HTMLElement>('div.content.focused');
   if (focusedElement) {
-    var height = Math.floor(focusedElement.scrollHeight / 96);
-    height = (height > 3 ? 3: height) * 96 + 96;
+    var height = Math.floor(focusedElement.scrollHeight / 80);
+    height = (height > 3 ? 3: height) * 80 + 80;
     focusedElement.style.height = height.toString() + "px";
   }
-}, { flush: 'post' });
+}
+
+watch(focusedTitle, checkHeight, { flush: 'post' });
 
 interface IndexNode {
   key: string,

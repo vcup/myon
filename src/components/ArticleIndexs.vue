@@ -7,14 +7,15 @@
   </div>
   <Transition>
     <div class="subnodes" v-if="expanded && props.IndexNode.childrens.length > 0">
-      <ArticleIndexs v-for="node of props.IndexNode.childrens" :key="node.key" :IndexNode="node" />
+      <ArticleIndexs v-for="node of props.IndexNode.childrens" :key="node.key"
+        :IndexNode="node" @changed="arg => $emit('changed', arg)"/>
     </div>
   </Transition>
 </template>
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 interface IndexNode {
   key: string,
@@ -26,8 +27,12 @@ const props = defineProps<{
     IndexNode: IndexNode
 }>();
 
-const expanded = ref(props.IndexNode.childrens.length < 6);
+const emit = defineEmits<{
+  (e: 'changed', status: boolean): void
+}>();
 
+const expanded = ref(props.IndexNode.childrens.length < 6);
+watch(expanded, () => emit('changed', expanded.value), { flush: 'post' });
 </script>
 
 
