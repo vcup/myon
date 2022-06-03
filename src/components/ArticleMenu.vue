@@ -6,7 +6,7 @@
     </div>
     <div id="contents">
       <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <router-link class="panel" :to="'/Articles?id=' + n.toString()" v-html="infos.Title"
+        <router-link class="panel" :to="'?id=' + n.toString()" v-html="infos.Title"
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
@@ -21,7 +21,7 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import ArticleIndexs from "./ArticleIndexs.vue";
 type ContentInfos = {
   Title: string,
@@ -40,6 +40,17 @@ const props = defineProps({
 })
 
 const focusedTitle = ref("");
+var focusedElement: HTMLElement|null;
+watch(focusedTitle, () => {
+  if (focusedElement) focusedElement.removeAttribute('style');
+
+  focusedElement = document.querySelector<HTMLElement>('div.content.focused');
+  if (focusedElement) {
+    var height = Math.floor(focusedElement.scrollHeight / 96);
+    height = (height > 3 ? 3: height) * 96 + 96;
+    focusedElement.style.height = height.toString() + "px";
+  }
+}, { flush: 'post' });
 
 interface IndexNode {
   key: string,
