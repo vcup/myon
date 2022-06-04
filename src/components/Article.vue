@@ -1,7 +1,7 @@
 <template>
 <div class="panel" :id="Id">
   <h1 class="title" v-html="Title" />
-  <span class="subtitle">aaaaa w</span>
+  <span class="subtitle" v-html="SubTitle"/>
   <div class="Content" v-html="props.Content" />
 </div>
 </template>
