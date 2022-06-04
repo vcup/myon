@@ -3,7 +3,7 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="content.Id" />
+    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="content.Id.toString()" />
   </main>
 </div>
 </template>
@@ -18,7 +18,7 @@ import axios from 'axios';
 const apiURL = inject("apiURL") as string // provider in main.ts
 
 interface result {
-  Id: string,
+  Id: number,
   Title: string,
   SubTitle: string,
   Content: string,
