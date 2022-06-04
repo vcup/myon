@@ -10,9 +10,9 @@
 <script setup lang="ts">
 
 const props = defineProps<{
+  Id: string,
   Title: string,
-  Content: string,
-  Id: string
+  Content: string
 }>()
 
 var titles = props.Title.split("\n", 2);
@@ -27,7 +27,7 @@ var SubTitle = titles[1];
   padding: 24px 45px;
   margin-bottom: 16px;
   display: grid;
-  grid-template-rows: 72px 48px auto;
+  grid-template-rows: 90px 48px auto;
   gap: 16px;
 }
 

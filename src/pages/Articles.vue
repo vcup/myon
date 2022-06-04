@@ -3,7 +3,7 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="(content, n) in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="n.toString()" />
+    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="content.Id" />
   </main>
 </div>
 </template>
@@ -18,16 +18,19 @@ import axios from 'axios';
 const apiURL = inject("apiURL") as string // provider in main.ts
 
 interface result {
+  Id: string,
   Title: string,
+  SubTitle: string,
   Content: string,
   HtmlHeadingIdRelation: Map<string, string>
 }
 /* example result
   result:{
-    Id: '0-example';
+    Id: '0';
     Title: 'example',
-    Content: <h1 id="1-1-example">example</h1> <p>w</p> <h2 id="1-1-1-heading"></h2> <h2 id="1-1-2-heading">heading</h2>
-    HtmlHeadingIdRelation: {"1-1-example": "example", "1-1-1-heading": "heading", "1-1-2-heading": "heading"}
+    SubTitle: 'example-subtitle'
+    Content: <h1 id="1-1">example</h1> <p>w</p> <h2 id="1-1-1"></h2> <h2 id="1-1-2">heading</h2>
+    HtmlHeadingIdRelation: {"1-1": "example", "1-1-1": "heading", "1-1-2": "heading"}
   }
 */
 const props = defineProps<{

@@ -5,8 +5,8 @@
       <span id="sign">{{ SignText }}</span>
     </div>
     <div id="contents">
-      <div v-for="(infos, n) in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
-        <router-link class="panel" :to="'?id=' + n.toString()" v-html="infos.Title"
+      <div v-for="infos in props.ContentInfos" :key="infos.Title" class="content" :class="focusedTitle === infos.Title ? 'focused' : null">
+        <router-link class="panel" :to="'?id=' + infos.Id" v-html="infos.Title"
           @click="if (focusedTitle !== infos.Title) focusedTitle = infos.Title; else focusedTitle = ''" />
         <Transition>
           <div v-if="focusedTitle === infos.Title">
@@ -24,6 +24,7 @@
 import { ref, watch } from 'vue';
 import ArticleIndexs from "./ArticleIndexs.vue";
 type ContentInfos = {
+  Id: string,
   Title: string,
   HtmlHeadingIdRelation: Map<string, string>
 }[]
