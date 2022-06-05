@@ -3,7 +3,7 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="content in results" :key="content.Title" :Title="content.Title" :Content="content.Content" :Id="content.Id.toString()" />
+    <Article v-for="content in results" :key="content.Title" v-bind="content" />
   </main>
 </div>
 </template>
@@ -22,6 +22,7 @@ interface result {
   Title: string,
   SubTitle: string,
   Content: string,
+  PictureUri: string,
   HtmlHeadingIdRelation: Map<string, string>
 }
 /* example result
