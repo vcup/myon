@@ -10,36 +10,41 @@
 
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 
 const props = defineProps<{
   Id: number,
   Title: string,
+  SubTitle: string,
   Content: string,
-  PictureUri: string
+  PictureUri: string|null
 }>()
 
-var titles = props.Title.split("\n", 2);
-
-var Title = titles[0];
-var SubTitle = titles[1];
+onMounted(() => {
+  if (props.SubTitle.length < 1){
+    const panel = document.getElementById(props.Id.toString());
+    if (panel) {
+      panel.style.gridTemplateRows = '0px 138px 0px auto';
+    }
+  }
+});
 </script>
 
 
 <style scoped>
 .panel {
-  padding: 8px 45px 24px;
+  padding: 32px 45px 24px;
   margin-bottom: 16px;
   display: grid;
   grid-template-rows: 0px 90px 48px auto;
-  gap: 16px;
 }
 
 img {
   position: relative;
   left: -45px;
-  top: -8px;
+  top: -32px;
   z-index: -1;
-  height: 178px;
+  height: 170px;
   width: calc(100% + 90px);
   object-fit: cover;
   border-radius: 16px 16px 0px 0px;
@@ -49,13 +54,20 @@ h1 {
   font-size: 45px;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0px 0px 3px white;
+  color: white;
+  text-shadow: 2px 4px 10px #000000b9;
+  margin: auto;
 }
 
 span {
-  font-weight: lighter;
+  font-weight: 600;
   text-align: center;
   display: block;
-  text-shadow: 0px 0px 3px white;
+  color: white;
+  text-shadow: 0px 0px 3px #000000b9;
+}
+
+div.Content {
+  padding-top: 24px;
 }
 </style>
