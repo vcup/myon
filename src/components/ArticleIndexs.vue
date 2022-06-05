@@ -3,7 +3,7 @@
     <span v-if="expanded && IndexNode.childrens.length > 0">▽</span>
     <span v-else-if="!expanded && props.IndexNode.childrens.length > 0">+</span>
     <span v-else>-</span>
-    <router-link :to="'?id=' + props.IndexNode.key" v-html="IndexNode.value" />
+    <router-link :to="'#' + props.IndexNode.key" v-html="IndexNode.value" />
   </div>
   <Transition>
     <div class="subnodes" v-if="expanded && props.IndexNode.childrens.length > 0">

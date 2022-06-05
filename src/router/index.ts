@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/Articles',
     name: 'Articles',
     component: Articles,
-    props: route => ({ ContentId: route.query.id })
+    props: route => ({ ContentId: route.hash })
   }
 ]
 
