@@ -70,4 +70,12 @@ span {
 div.Content {
   padding-top: 24px;
 }
+
+div.Content > :deep(h1) > a, :deep(h2) > a, :deep(h3) > a, :deep(h4) > a, :deep(h5) > a, :deep(h6) > a {
+  text-decoration: unset;
+  color: unset;
+}
+div.Content > :deep(h1) > a:hover, :deep(h2) > a:hover, :deep(h3) > a:hover, :deep(h4) > a:hover, :deep(h5) > a:hover, :deep(h6) > a:hover {
+  text-decoration: underline;
+}
 </style>
