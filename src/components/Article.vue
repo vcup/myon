@@ -2,7 +2,9 @@
 <div class="panel" :id="Id.toString()">
   <img v-if="PictureUri" :src="PictureUri"/>
   <div v-else/>
-  <h1 class="title" v-html="Title" />
+  <h1 class="title" >
+    <router-link :to="'#' + Id.toString()" v-html="Title"/>
+  </h1>
   <span class="subtitle" v-html="SubTitle"/>
   <div class="Content" v-html="props.Content" />
 </div>
@@ -71,7 +73,7 @@ div.Content {
   padding-top: 24px;
 }
 
-div.Content > :deep(h1) > a, :deep(h2) > a, :deep(h3) > a, :deep(h4) > a, :deep(h5) > a, :deep(h6) > a {
+a, div.Content > :deep(h1) > a, :deep(h2) > a, :deep(h3) > a, :deep(h4) > a, :deep(h5) > a, :deep(h6) > a {
   text-decoration: unset;
   color: unset;
 }
