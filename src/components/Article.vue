@@ -6,13 +6,14 @@
     <router-link :to="'#' + Id.toString()" v-html="Title"/>
   </h1>
   <span class="subtitle" v-html="SubTitle"/>
-  <div class="Content" v-html="props.Content" />
+  <div class="Content markdown-body" v-html="props.Content" />
 </div>
 </template>
 
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import 'github-markdown-css/github-markdown.css';
 
 const props = defineProps<{
   Id: number,

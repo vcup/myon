@@ -1,8 +1,8 @@
 /* override bootstrap start */
 
 *, ::after, ::before {
-    /* is will set needless space */
-    box-sizing: unset;
+  /* is will set needless space */
+  box-sizing: unset;
 }
 
 /* override bootstrap end */
