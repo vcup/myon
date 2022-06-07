@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import 'github-markdown-css/github-markdown.css';
+import 'github-markdown-css/github-markdown-light.css';
 
 const props = defineProps<{
   Id: number,
