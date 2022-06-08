@@ -3,7 +3,8 @@
   <ArticleMenu :ContentInfos="results" />
 
   <main>
-    <Article v-for="content in results" :key="content.Title" v-bind="content" />
+    <Article v-for="content in results" :key="content.Title"
+      :Id="content.Id" :Title="content.Title" :SubTitle="content.SubTitle" :Content="content.Content" :PictureUri="content.PictureUri" />
   </main>
 </div>
 </template>
