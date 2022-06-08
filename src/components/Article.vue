@@ -50,7 +50,7 @@ img {
   height: 170px;
   width: calc(100% + 90px);
   object-fit: cover;
-  border-radius: 16px 16px 0px 0px;
+  border-radius: 12px 12px 0px 0px;
 }
 
 h1 {
