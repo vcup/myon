@@ -1,18 +1,17 @@
 <template>
-<div class="panel" :id="Id.toString()">
+<div class="panel" :class="SubTitle.length < 1 ? 'hasNotSubTitle':null" :id="Id.toString()">
   <img v-if="PictureUri" :src="PictureUri"/>
   <div v-else/>
   <h1 class="title" >
     <router-link :to="'#' + Id.toString()" v-html="Title"/>
   </h1>
   <span class="subtitle" v-html="SubTitle"/>
-  <div class="Content markdown-body" v-html="props.Content" />
+  <div class="markdown-body" v-html="props.Content" />
 </div>
 </template>
 
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import 'github-markdown-css/github-markdown-light.css';
 
 const props = defineProps<{
@@ -22,15 +21,6 @@ const props = defineProps<{
   Content: string,
   PictureUri: string|null
 }>()
-
-onMounted(() => {
-  if (props.SubTitle.length < 1){
-    const panel = document.getElementById(props.Id.toString());
-    if (panel) {
-      panel.style.gridTemplateRows = '0px 138px 0px auto';
-    }
-  }
-});
 </script>
 
 
@@ -40,6 +30,10 @@ onMounted(() => {
   margin-bottom: 16px;
   display: grid;
   grid-template-rows: 0px 90px 48px auto;
+}
+
+.panel.hasNotSubTitle {
+  grid-template-rows: 0px 138px 0px auto;
 }
 
 img {
@@ -70,15 +64,15 @@ span {
   text-shadow: 0px 0px 3px #000000b9;
 }
 
-div.Content {
+div.markdown-body {
   padding-top: 24px;
 }
 
-a, div.Content > :deep(h1) > a, :deep(h2) > a, :deep(h3) > a, :deep(h4) > a, :deep(h5) > a, :deep(h6) > a {
+a, div.markdown-body > :deep(h1) > a, :deep(h2) > a, :deep(h3) > a, :deep(h4) > a, :deep(h5) > a, :deep(h6) > a {
   text-decoration: unset;
   color: unset;
 }
-div.Content > :deep(h1) > a:hover, :deep(h2) > a:hover, :deep(h3) > a:hover, :deep(h4) > a:hover, :deep(h5) > a:hover, :deep(h6) > a:hover {
+div.markdown-body > :deep(h1) > a:hover, :deep(h2) > a:hover, :deep(h3) > a:hover, :deep(h4) > a:hover, :deep(h5) > a:hover, :deep(h6) > a:hover {
   text-decoration: underline;
 }
 </style>
