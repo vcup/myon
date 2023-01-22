@@ -60,13 +60,8 @@ function scrollTo(id: string|null) {
 
     if (element === null) return;
 
-    const offset = element.offsetTop - window.scrollY - 5;
-    if (window.scrollY > element.offsetTop) {
-      window.scrollBy({top: offset - 75, behavior: 'smooth'});
-    }
-    else {
-      window.scrollBy({top: offset, behavior: 'smooth'});
-    }
+    const y = element.offsetTop - window.scrollY > element.offsetTop ? 80 : 5;
+    window.scrollTo({top: y, behavior: 'smooth'})
   }
 }
 </script>
