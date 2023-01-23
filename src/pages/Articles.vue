@@ -62,6 +62,14 @@ function scrollTo(id: string|null) {
 
     const y = element.offsetTop - (window.scrollY > element.offsetTop ? 80 : 5);
     window.scrollTo({top: y, behavior: 'smooth'})
+
+    // <a herf="#id"> may override scroll position
+    new Promise(resolve => setTimeout(resolve, 300)).then(() => {
+      console.info(window.scrollY - y)
+      if (Math.abs(window.scrollY - y) < 80)
+        console.info(window.scrollY - y)
+        window.scrollTo({top: y, behavior: 'smooth'})
+    })
   }
 }
 </script>
